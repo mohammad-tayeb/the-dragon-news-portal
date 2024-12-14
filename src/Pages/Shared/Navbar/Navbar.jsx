@@ -1,10 +1,23 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext)
+
+  const handleSignOut = () => {
+        logOut()
+        .then()
+        .catch(error =>{
+          console.log(error)
+        })
+  }
+
   const links = <>
     <li className="text-white"><NavLink to="/">Home</NavLink></li>
     <li className="text-white"><NavLink to="/about">About</NavLink></li>
     <li className="text-white"><NavLink to="/career">Career</NavLink></li>
+    <li className="text-white"><NavLink to="/register">Create An Acoount</NavLink></li>
   </>
 
   return (
@@ -39,14 +52,16 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
             </div>
           </div>
-          <Link className='btn btn-outline mx-3 text-white' to="/login">Login</Link>
+          {
+            user ? <Link onClick={handleSignOut} className='btn btn-outline mx-3 text-white' to="/login">Sign Out</Link> : <Link className='btn btn-outline mx-3 text-white' to="/login">Login</Link>
+          }
         </div>
       </div>
     </div>

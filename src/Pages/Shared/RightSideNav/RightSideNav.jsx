@@ -42,9 +42,9 @@ const RightSideNav = () => {
             </div>
             
             {/* q zone */}
-            <div className="text-white space-y-3 p-4">
+            <div className="text-white space-y-3 p-4 flex flex-col items-center md:items-start">
                 <h2 className="text-2xl font-bold">Q Zone</h2>
-                <img src={qz2} alt="" />
+                <img className="" src={qz2} alt="" />
                 <img src={qz1} alt="" />
                 <img src={qz3} alt="" />
             </div>
